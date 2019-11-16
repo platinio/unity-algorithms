@@ -1,9 +1,11 @@
-﻿
+﻿using UnityEngine;
+
 namespace UnityAlgorithms
 {
+    [System.Serializable]
     public class QuickFind 
     {
-        private int[] array;
+        [SerializeField] private int[] array;
 
         public QuickFind(int size)
         {
@@ -22,8 +24,8 @@ namespace UnityAlgorithms
 
         public void CreateConnection(int a , int b)
         {
-            int newConnection = a;
-            int oldConnection = b;
+            int newConnection = array[a];
+            int oldConnection = array[b];
 
             for (int n = 0; n < array.Length; n++)
             {
