@@ -18,7 +18,18 @@ namespace UnityAlgorithms
             qf.CreateConnection(3 , 9);
             qf.CreateConnection(9 , 4);
 
-            Debug.Log(qf.IsConnected(4 , 1));
+            bool connected = qf.IsConnected( 4, 1 );
+
+            if (connected)
+            {
+                Debug.Log( "4 and 1 are connected" );
+            }
+            else
+            {
+                Debug.Log("Oops 4 and 1 are not connected somethign is wrong in the Quick Find implementation!");
+            }
+
+           
 
         }
     }
