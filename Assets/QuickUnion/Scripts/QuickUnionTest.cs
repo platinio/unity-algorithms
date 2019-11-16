@@ -1,0 +1,39 @@
+﻿using UnityEngine;
+
+namespace UnityAlgorithms
+{
+    public class QuickUnionTest : MonoBehaviour
+    {
+
+        [SerializeField] private QuickUnion qf;
+
+        private void Awake()
+        {
+            qf = new QuickUnion( 10 );
+            qf.CreateConnection( 0, 5 );
+            qf.CreateConnection( 0, 6 );
+            qf.CreateConnection( 1, 2 );
+            qf.CreateConnection( 2, 7 );
+            qf.CreateConnection( 2, 8 );
+            qf.CreateConnection( 8, 3 );
+            qf.CreateConnection( 3, 9 );
+            qf.CreateConnection( 9, 4 );
+
+            bool connected = qf.IsConnected( 4, 1 );
+
+            if (connected)
+            {
+                Debug.Log( "4 and 1 are connected everyting is working fine!" );
+            }
+            else
+            {
+                Debug.Log( "Oops 4 and 1 are not connected somethign is wrong in the Quick Union implementation!" );
+            }
+
+
+
+        }
+    }
+}
+
+

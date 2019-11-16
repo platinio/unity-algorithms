@@ -22,7 +22,7 @@ namespace UnityAlgorithms
 
             if (connected)
             {
-                Debug.Log( "4 and 1 are connected" );
+                Debug.Log( "4 and 1 are connected everyting is working fine!" );
             }
             else
             {
