@@ -52,19 +52,13 @@ namespace UnityAlgorithms
         public int Size()
         {
             if (first == null)
-            {
-                Debug.Log("first is null");
+            {                
                 return 0;
             }
                 
 
             int size = 1;
             Node<T> node = first;
-
-            if (node.nextNode == null)
-            {
-                Debug.Log("next node is null");
-            }
 
             while (node.nextNode != null)
             {

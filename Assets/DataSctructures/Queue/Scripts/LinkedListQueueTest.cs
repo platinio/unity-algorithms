@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityAlgorithms
 {
@@ -10,9 +8,10 @@ namespace UnityAlgorithms
         {
             LinkedListQueue<string> stringQueue = new LinkedListQueue<string>();
             stringQueue.Enqueue("Hi");
-            stringQueue.Enqueue( "I" );
-            stringQueue.Enqueue( "am" );
-            stringQueue.Enqueue( "James Roman" );
+            stringQueue.Enqueue( "this" );
+            stringQueue.Enqueue( "is" );
+            stringQueue.Enqueue( "a" );
+            stringQueue.Enqueue( "LinkednListQueue" );
 
             int size = stringQueue.Size();
             for (int n = 0; n < 100 ; n++)
