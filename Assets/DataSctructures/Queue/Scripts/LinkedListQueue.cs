@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-
-namespace UnityAlgorithms
+﻿namespace UnityAlgorithms
 {
     public class LinkedListQueue<T>
     {
         private Node<T> first = null;
         private Node<T> last = null;
+    
+        public int Count { get; private set; }
 
         public bool isEmpty()
         {
@@ -28,7 +28,9 @@ namespace UnityAlgorithms
             {
                 oldLast.nextNode = last;
             }
-            
+
+            Count++;
+
         }
 
         public T Dequeue()
@@ -46,29 +48,10 @@ namespace UnityAlgorithms
                 last = null;
             }
 
+            Count--;
+
             return item;
-        }
-
-        public int Size()
-        {
-            if (first == null)
-            {                
-                return 0;
-            }
-                
-
-            int size = 1;
-            Node<T> node = first;
-
-            while (node.nextNode != null)
-            {
-                size++;
-                node = node.nextNode;
-            }
-
-            return size;
-
-        }
+        }      
 
 
 
