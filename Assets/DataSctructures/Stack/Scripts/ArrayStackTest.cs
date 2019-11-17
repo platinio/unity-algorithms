@@ -15,11 +15,6 @@ namespace UnityAlgorithms
 
             arrayStack.Pop();
 
-            for (int n = 0; n < arrayStack.array.Length; n++)
-            {
-                Debug.Log( arrayStack.array[n] );
-            }
-            
         }
     }
 }
