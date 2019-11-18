@@ -91,12 +91,25 @@ namespace UnityAlgorithms
 
         }
 
-        public void Print()
+        public void PrintAll()
         {
             for (int n = 0 ; n < array.Length; n++)
             {
-                Debug.Log("Array[" + n + "] = " + array[n]);
+                Print(n);
             }
+        }
+
+        public void Print()
+        {
+            foreach (T item in this)
+            {
+                Print(n);
+            }
+        }
+
+        private void Print(int index)
+        {
+            Debug.Log( "Array[" + index + "] = " + array[index] );
         }
 
         public IEnumerator<T> GetEnumerator()
