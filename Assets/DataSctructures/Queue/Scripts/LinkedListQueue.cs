@@ -1,6 +1,10 @@
-﻿namespace UnityAlgorithms
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace UnityAlgorithms
 {
-    public class LinkedListQueue<T>
+    public class LinkedListQueue<T> : IEnumerable<T>
     {
         private Node<T> first = null;
         private Node<T> last = null;
@@ -51,9 +55,24 @@
             Count--;
 
             return item;
-        }      
+        }   
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            Node<T> node = first;
 
+            while (node != null)
+            {
+                yield return node.item;
+                node = node.nextNode;
+            }
+
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         private class Node<T>
         {
