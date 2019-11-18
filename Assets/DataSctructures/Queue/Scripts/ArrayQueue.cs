@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace UnityAlgorithms
 {
-    public class ArrayQueue <T>
+    public class ArrayQueue <T> : IEnumerable<T>
     {
         private T[] array = null;
         private int first = 0;
@@ -41,7 +43,6 @@ namespace UnityAlgorithms
 
         private void IncreaseSize()
         {
-            Debug.Log("increasing size");
             T[] newArray = new T[array.Length * 2];
             int counter = 0;
 
@@ -76,7 +77,6 @@ namespace UnityAlgorithms
 
         private void DecreseSize()
         {
-            Debug.Log("decreasing size");
             T[] newArray = new T[array.Length / 2];
             int counter = 0;
 
@@ -99,7 +99,18 @@ namespace UnityAlgorithms
             }
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int n = first; n < last; n++)
+            {
+                yield return array[n];
+            }
+        }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
 }
