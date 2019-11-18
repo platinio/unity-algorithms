@@ -101,9 +101,10 @@ namespace UnityAlgorithms
 
         public void Print()
         {
+            int counter = 0;
             foreach (T item in this)
             {
-                Print(n);
+                Print(first + counter++);
             }
         }
 
