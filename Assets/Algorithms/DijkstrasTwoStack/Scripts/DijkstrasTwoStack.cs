@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System;
 using UnityEngine;
 
 namespace UnityAlgorithms
@@ -6,52 +7,53 @@ namespace UnityAlgorithms
     public static class DijkstrasTwoStack 
     {
         private static ArrayStack<int> numbers = null;
-        private static ArrayStack<string> symbols = null;
-        private static int result = 0;
+        private static ArrayStack<string> symbols = null;        
+        private static int defaultStackSize = 10;
 
-        public static int Process(string sentence)
+
+        public static int Evaluate(string sentence)
         {
             if (IsSentenceValid( sentence ))
             {
-                InitializeStacks();
-                ProcessValidSentence(sentence);
-                return numbers.Pop();
-            }
-            else
-            {
-
+                Initialize();
+                return ResolveMathOperation(sentence);                
             }
 
-            return 0;
+            ArgumentException exception = new ArgumentException( "Sentence contains invalid characters", "sentence");
+            throw exception;
         }
 
         private static bool IsSentenceValid(string sentence)
         {
-            //Regex regex = new Regex( "^[0-9()+-*]+$" );
-            //return regex.IsMatch(sentence);
-            return true;
+            Regex regex = new Regex( "^[0-9()+* -]+$" );
+            return regex.IsMatch(sentence);
         }
 
-        private static void InitializeStacks()
+        private static void Initialize()
         {
-            numbers = new ArrayStack<int>( 10 );
-            symbols = new ArrayStack<string>( 10 );
-            result = 0;
+            numbers = new ArrayStack<int>( defaultStackSize );
+            symbols = new ArrayStack<string>( defaultStackSize );          
         }
 
-        private static void ProcessValidSentence(string sentence)
+        private static int ResolveMathOperation(string sentence)
         {
             foreach (string s in sentence.Split(' '))
             {
                 ProcessChar(s);
             }
+
+            if (!numbers.IsEmpty())
+            {
+                return numbers.Pop();
+            }
+
+            return 0;
         }
 
         private static void ProcessChar(string s)
         {
             if (s == "(")
             {
-                //symbols.Push(s);
                 return;
             }
 
@@ -61,71 +63,50 @@ namespace UnityAlgorithms
             {
                 numbers.Push( number );
             }
-            else if (s == "+" || s == "-" || s == "*")
+            else if ( IsMathSymbol( s ) )
             {
-                Debug.Log("push " + s);
                 symbols.Push( s );
             }
             else if (s == ")")
             {
-                //string symbol = symbols.Pop();
-
-                while (symbols.head > 0)
-                {
-                    Debug.Log(numbers.head);
-                    //ResolveEquation( numbers.Pop() , symbol );
-                    numbers.Push( ResolveEquation( numbers.Pop() , numbers.Pop(), symbols.Pop() ) );                    
-                }
-               
+                ResolveMathStack();               
             }
 
         }
 
-        private static void ResolveEquation(int number , string symbol)
+        private static bool IsMathSymbol(string s)
         {
-            switch (symbol)
+            return s == "+" || s == "-" || s == "*";
+        }
+
+        private static void ResolveMathStack()
+        {
+            while ( !symbols.IsEmpty() )
             {
-                case "+":
-                {
-                    result += number;
-                    break;
-                }
-
-                case "-":
-                {
-                    result -= number;
-                    break;
-                }
-
-                case "*":
-                {
-                    result *= number;
-                    break;
-                }
-
+                int result = ResolveOperation( numbers.Pop(), numbers.Pop(), symbols.Pop() );
+                numbers.Push( result );
             }
         }
 
-        private static int ResolveEquation(int numberA , int numberB , string symbol)
+        private static int ResolveOperation(int numberA , int numberB , string symbol)
         {
+            Debug.Log("Resolving " + numberA + " " + symbol + " " + numberB);
+
             switch (symbol)
             {
                 case "+":
                 {
-                    return numberA + numberB;
-                    break;
+                    return numberA + numberB;                   
                 }
 
                 case "-":
                 {
-                    return numberA - numberB;
-                    break;
+                    return numberA - numberB;                   
                 }
 
                 case "*":
                 {
-                    return numberA * numberB;
-                    break;
+                    return numberA * numberB;                   
                 }
 
             }

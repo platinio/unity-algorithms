@@ -20,6 +20,11 @@
             return array[--head];
         }
 
+        public bool IsEmpty()
+        {
+            return head <= 0;
+        }
+
     }
 }
 

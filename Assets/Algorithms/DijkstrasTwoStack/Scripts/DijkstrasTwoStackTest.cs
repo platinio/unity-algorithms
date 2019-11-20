@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 namespace UnityAlgorithms
 {
     public class DijkstrasTwoStackTest : MonoBehaviour
     {
-        [SerializeField] private string sentence = null;
+        [SerializeField] private TMP_InputField inputField = null;
+        [SerializeField] private TextMeshProUGUI resultLabel = null;
 
-        private void Awake()
+        public void Evaluate()
         {
-            Debug.Log( DijkstrasTwoStack.Process(sentence) );
+            resultLabel.text = DijkstrasTwoStack.Evaluate( inputField.text ).ToString();
         }
     }
 }
