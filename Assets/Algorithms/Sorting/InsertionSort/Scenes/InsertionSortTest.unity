@@ -149,12 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1461269b97b56c4389e3415ca2beadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCubes: 150
+  numberOfCubes: 100
   cubeMaxSize: 20
   spacing: 0.45
   fromColor: {r: 0.31764707, g: 0.91764706, b: 0.91764706, a: 1}
   toColor: {r: 0.9372549, g: 0.2627451, b: 0.22352941, a: 1}
-  delay: 0.1
+  delay: 0.02
 --- !u!4 &106071747
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272175635}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 34.3, y: 20.1, z: -27.9}
+  m_LocalPosition: {x: 23.16, y: 17.49, z: -21.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
