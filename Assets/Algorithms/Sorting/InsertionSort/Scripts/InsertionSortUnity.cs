@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+
 
 namespace UnityAlgorithms
 {
@@ -17,7 +17,7 @@ namespace UnityAlgorithms
         {
             SpawnRandomCubes();
             StartCoroutine( InsertionSortRoutine() );
-        }
+        }               
 
         private void SpawnRandomCubes()
         {
@@ -25,12 +25,12 @@ namespace UnityAlgorithms
             {
                 CreateCube(n);
             }
-        }
-
+        }       
+        
         private void CreateCube(int index)
         {
             GameObject go = GameObject.CreatePrimitive( PrimitiveType.Cube );
-            float cubeSize = Random.Range( 0.1f, cubeMaxSize);
+            float cubeSize = UnityEngine.Random.Range( 0.1f, cubeMaxSize);
             go.transform.localScale = new Vector3(0.25f , cubeSize , 0.25f );
             go.transform.position = transform.position + ( Vector3.up * ( cubeSize / 2.0f ) );
             go.transform.position = go.transform.position + ( Vector3.right * spacing * index );
@@ -41,7 +41,7 @@ namespace UnityAlgorithms
             render.material.color = Color.Lerp( fromColor , toColor , cubeSize / cubeMaxSize );
 
         }
-
+        
         private IEnumerator InsertionSortRoutine()
         {
             for (int n = 0; n < transform.childCount; n++)
@@ -62,7 +62,7 @@ namespace UnityAlgorithms
                 }
             }
         }
-
+        
         private void Swap(int childA , int childB)
         {
             Transform transformA = transform.GetChild( childA );
@@ -80,6 +80,7 @@ namespace UnityAlgorithms
         
 
 
-    }
+    }  
+
 }
 
